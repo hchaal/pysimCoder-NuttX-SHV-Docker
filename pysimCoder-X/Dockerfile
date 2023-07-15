@@ -10,13 +10,13 @@ RUN apt-get -y install \
     locate \
     less \
     net-tools \
-    xfce4-terminal \
+    # xfce4-terminal \
     make \
     python3-pip \
     kconfig-frontends \
     cmake \
     binutils \
-    emacs \
+    # emacs \
     x11vnc \
     python3 \
     python3-numpy \
@@ -82,13 +82,13 @@ RUN make SHV=1 PYSUPSICTRL=/pysimCoder
     
 COPY shv /usr/local/bin
 
-WORKDIR /root
-RUN mkdir -p .config/xfce4/terminal
-COPY terminalrc .config/xfce4/terminal
+#WORKDIR /root
+#RUN mkdir -p .config/xfce4/terminal
+#COPY terminalrc .config/xfce4/terminal
 
 WORKDIR /
 RUN mkdir psc
 
 WORKDIR /psc
-CMD ["xfce4-terminal"]
+CMD ["bash"]
 
