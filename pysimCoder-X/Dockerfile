@@ -10,13 +10,13 @@ RUN apt-get -y install \
     locate \
     less \
     net-tools \
-    # xfce4-terminal \
+    gnome-terminal \
     make \
     python3-pip \
     kconfig-frontends \
     cmake \
     binutils \
-    # emacs \
+    emacs \
     x11vnc \
     python3 \
     python3-numpy \
@@ -82,13 +82,28 @@ RUN make SHV=1 PYSUPSICTRL=/pysimCoder
     
 COPY shv /usr/local/bin
 
+# install NuttX tools:
+RUN apt-get -y install \
+    tio \
+    kconfig-frontends \
+    openocd  \
+    binutils-arm-none-eabi \
+    gcc-arm-none-eabi
+WORKDIR /
+RUN git clone https://github.com/apache/nuttx.git NUTTX/nuttx
+RUN git clone https://github.com/apache/nuttx-apps NUTTX/apps
+
+RUN apt-get -y install xfce4-terminal nano 
+RUN printf "alias ls='ls --color=auto'\n" >> /root/.bashrc
 #WORKDIR /root
 #RUN mkdir -p .config/xfce4/terminal
 #COPY terminalrc .config/xfce4/terminal
+RUN apt-get -y install thunar gedit
 
 WORKDIR /
 RUN mkdir psc
 
 WORKDIR /psc
-CMD ["bash"]
+CMD ["xfce4-terminal"]
+#sudo docker run --rm --env="DISPLAY" --net=host -v $XAUTHORITY:/tmp/.XAuthority -e XAUTHORITY=/tmp/.XAuthority --privileged rcp-dev
 
