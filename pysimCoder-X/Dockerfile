@@ -10,7 +10,7 @@ RUN apt-get -y install \
     locate \
     less \
     net-tools \
-    gnome-terminal \
+    xfce4-terminal \
     make \
     python3-pip \
     kconfig-frontends \
@@ -31,7 +31,10 @@ RUN apt-get -y install \
     liblapack-dev \
     libxml2-dev \
     libcomedi-dev \
-    python3-pyqt5
+    python3-pyqt5 \
+    nano \
+    thunar \
+    gedit
     
 RUN apt-get -y install \
     qtbase5-dev \
@@ -85,6 +88,7 @@ COPY shv /usr/local/bin
 # install NuttX tools:
 RUN apt-get -y install \
     tio \
+    minicom \
     kconfig-frontends \
     openocd  \
     binutils-arm-none-eabi \
@@ -93,12 +97,7 @@ WORKDIR /
 RUN git clone https://github.com/apache/nuttx.git NUTTX/nuttx
 RUN git clone https://github.com/apache/nuttx-apps NUTTX/apps
 
-RUN apt-get -y install xfce4-terminal nano 
 RUN printf "alias ls='ls --color=auto'\n" >> /root/.bashrc
-#WORKDIR /root
-#RUN mkdir -p .config/xfce4/terminal
-#COPY terminalrc .config/xfce4/terminal
-RUN apt-get -y install thunar gedit
 
 WORKDIR /
 RUN mkdir psc
