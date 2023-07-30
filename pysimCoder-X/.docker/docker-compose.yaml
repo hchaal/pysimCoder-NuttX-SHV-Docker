@@ -1,0 +1,14 @@
+version: '3'
+services:
+  pysimc:
+    container_name: roberto.bucher/pysimcoder
+    image: pysimcoder:latest
+    volumes:
+    - /dev:/dev
+    - $XAUTHORITY:/tmp/.XAuthority
+   environment:
+    - DISPLAY
+    - XAUTHORITY=/tmp/.XAuthority
+    network_mode: host
+    restart: always
+    privileged: true
