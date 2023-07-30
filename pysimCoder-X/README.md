@@ -19,7 +19,7 @@ To launch pysimCoder in the container run:
 psc
 ```
 
-This version include the Silicon-Heaven application (SVH) which enable modifying parameters of the RT task and plotting signals on-the-fly. To launch SVH run:
+This version include the Silicon-Heaven application (SHV) which enable modifying parameters of the RT task and plotting signals on-the-fly. To launch SVH run:
 ```
 shv
 ```
