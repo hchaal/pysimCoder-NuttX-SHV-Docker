@@ -2,8 +2,24 @@
  
 Launch the docker image using
 ```
-$ docker run --rm --env="DISPLAY" --net=host -v $XAUTHORITY:/tmp/.Xauthority -e XAUTHORITY=/tmp/.Xauthority --privileged hchaal/rcp-dev
+docker run --rm --env="DISPLAY" --net=host -v $XAUTHORITY:/tmp/.Xauthority -e XAUTHORITY=/tmp/.Xauthority --privileged hchaal/rcp-dev
 ```
+
+To make changes persist in the development container;
+
+1- add a volume, using this command:
+```
+docker volume create pysimcoder_volume
+```
+2- run your docker image with the following argument:
+```
+-v pysimcoder_volume:/location-in-container-filesystem
+```
+An example is given below:
+```
+docker run --rm -v pysimcoder_volume:/pysimCoder --env="DISPLAY" --net=host -v $XAUTHORITY:/tmp/.Xauthority -e XAUTHORITY=/tmp/.Xauthority --privileged hchaal/rcp-dev
+```
+
 Add the argument
 ```
 --device=/dev/ttyACM0
@@ -26,7 +42,7 @@ shv
 
 NuttX files are included in: /NUTTX/nuttx and /NUTTX/apps.
 
-Additional tools included in this version are:
+Additional tools included in this container version are:
 
 - thunar: file manager (GUI).
 - gedit: simple text editor (GUI).
